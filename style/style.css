@@ -1,7 +1,7 @@
-body {
+#body {
     background-color: #f2e5d7;
+    font-family: 'Roboto Condensed', sans-serif;
     min-width: fit-content;
-    padding: 0 5px;
 }
 
 /* Header */
@@ -30,27 +30,29 @@ header {
 }
 
 .header__div > a > img {
-    width: 8rem;
+    width: 6rem;
 }
 
 .header__div > nav {
     grid-area: b;
+    justify-self: center;
     margin-top: 10px;
     text-align: center;
+    background-color: #262322;
     border-radius: 10px;
-    border: solid 2px #262322;
+    border: 6px double #f2e5d7;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
 }
+
 .header__div > nav > a {
-    color: #262322;
-    font-weight: 600;
+    color: #f2e5d7;
+    font-weight: 400;
     text-decoration: none;
 }
+
 .header__div > nav > a:not(:last-child) {
-    border-bottom: 2px solid #262322;
-    border-radius: 5px;
+    border-bottom: 1px solid #f2e5d7;
 }
 
 /* Header responsive */
@@ -60,31 +62,90 @@ header {
     header {
         padding-bottom: 0;
     }
+
     .header__div {
         grid-template-areas: 
         "a b b b"
         "a b b b";
     }
+
     .header__div > a > img {
+        width: 8rem;
         margin-bottom: 20px;
     }
+
     .header__div > nav {
         height: fit-content;
-        align-self: flex-end;
+        align-self: center;
         margin-bottom: 20px;
         font-size: 1.2rem;
-        border: 6px double #262322;
+        border: 6px double #f2e5d7;
         flex-direction: row;
         justify-content: space-around;
     }
+
     .header__div > nav > a {
         margin: 5px 0;
         transition: transform;
     }
+
     .header__div > nav > a:hover {
         transform: scale(110%);
     }
+
     .header__div > nav > a:not(:last-child) {
         border-bottom: none;
     }
+}
+
+/* Main */
+
+main {
+    margin: 15px 0;
+    min-width: fit-content;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.crud {
+    padding: 0;
+    box-sizing: border-box;
+    display: grid;
+    grid-template-areas: 
+    "a a a a"
+    "b b b b "
+    "c c c c";
+}
+
+.crud > .titulo {
+    grid-area: a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.crud > .titulo > h1 {
+    font-size: 5rem;
+    color: #f2e5d7;
+    padding: 0 5px;
+    border: 6px double #f2e5d7;
+    background-color: #262322;
+    box-shadow: -15px 10px 5px 0px rgba(0,0,0,0.75);
+}
+.crud > .titulo > p {
+    text-align: center;
+    font-size: large;
+}
+
+.crud > form {
+    grid-area: b;
+}
+
+.crud > form  > div:nth-child(4) > textarea {
+    resize: none;
+}
+
+.crud > table {
+    grid-area: c;
 }
