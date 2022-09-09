@@ -1,127 +1,99 @@
-document.getElementById('btn').addEventListener('click', guardar);
+// EventListeners
 
-var row = null;
-var idParaKeys;
+// document.querySelector('form').addEventListener('submit', onSubmitForm);
 
-// Función 'Create'
-function guardar() {
+document.querySelector('form').addEventListener('submit', (e) => {
 
-    let x = inputData();
-    let y = dataLocalStorage(x);
-    if (row == null) {
-        mostrar(y);
-        document.getElementById('msg').innerHTML = 'Tarea Guardada';
-    }else {
-        update();
-        document.getElementById('msg').innerHTML = 'Tarea Editada';
-    }
-}
+    e.preventDefault();
+    onSubmitForm();
+    document.querySelector('form').reset();
+    // se vuelve a definir la variable que selecciona la fila deseada como null para que se pueda volver a usar 
+    selectedRow = null;
+});
 
-// Create 
-// Con esta función se obtienen los valores de los inputs
-function inputData() {
+// Variables globales
 
-    let nombre = document.getElementById('nombre').value;
-    let apellido = document.getElementById('apellido').value;
-    let tarea = document.getElementById('tarea').value;
-    let descripcion = document.getElementById('descripcion').value;
+var selectedRow = null;
+var formData;
 
-    let arr = [nombre, apellido, tarea, descripcion];
-    return arr;    
-}
+// Funciones
 
-// Read 
-// Con esta función se crean los 'Key' y los 'Value' en el local storage y a la vez se obtienen de vuelta 
-function dataLocalStorage(x) {
+function onSubmitForm() {
 
-    idParaKeys = Math.floor(Math.random() * 9999);
+    formData = readForm();
+    if (selectedRow == null) {
+
+        insertNewRecord(formData);
+    } else {
+
+        updateRecord(formData);
+    };
+};
+
+function readForm() {
+    // Se construye el objeto
+    formData = {};
+    formData['nombre'] = document.getElementById('nombre').value;
+    formData['apellido'] = document.getElementById('apellido').value;
+    formData['tarea'] = document.getElementById('tarea').value;
+    formData['descripcion'] = document.getElementById('descripcion').value;
+
+    return formData;
+
+};
+
+function insertNewRecord(formData) {
+
+    var table = document.getElementById('listaTareas').getElementsByTagName('tbody')[0];
+    var newRow = table.insertRow();
+
+    cell1 = newRow.insertCell(0);
+    cell1.innerHTML = formData.nombre;
+    cell2 = newRow.insertCell(1);
+    cell2.innerHTML = formData.apellido;
+    cell3 = newRow.insertCell(2);
+    cell3.innerHTML = formData.tarea;
+    cell4 = newRow.insertCell(3);
+    cell4.innerHTML = formData.descripcion;
+
+    // Se incertan los elementos que van a ser los botones de Edit y Delete, con sus respectivos eventos
+
+    cell5 = newRow.insertCell(4);
+    cell5.innerHTML = `<a onClick=editForm(this)>Edit</a><a onClick=deleteRecord(this)>Delete</a>`;
+};
+
+function deleteRecord(a) {
+
+    // son dos parentElement porque con el primero se obtiene el padre de <a></a> que es un <td></td>, y con el otro el padre de este que es el tr que necesito
+    let row = a.parentElement.parentElement;
+    let x = confirm('Confirme si desea eliminar este elemento');
     
-    const storage = window.localStorage;
-    // obtengo desde el storage, el key acumulador.
-    let valida = storage.getItem(`infoData ${idParaKeys}`);
-    let acumula = [];
-    // si no existe el key acumulador, no hago nada. Pero si existe, lo obtengo.
-    if (valida != null){
-        // es convertir un string json en un arreglo para manipularlo en JS.
-        acumula = JSON.parse(storage.getItem(`infoData ${idParaKeys}`));
-    }
-    const valor1 = x[0];
-    const valor2 = x[1];
-    const valor3 = x[2];
-    const valor4 = x[3];
+    if (x == true) {
+        
+        // rowIndex entrega el indice del tr que se quiere eliminar 
+        document.getElementById('listaTareas').deleteRow(row.rowIndex);
 
+    };
+};
 
-    // agregar al arreglo acumula, el valor en el input
-    acumula.push(valor1);
-    acumula.push(valor2);
-    acumula.push(valor3);
-    acumula.push(valor4);
-    // tomo el arreglo acumula, y lo parseo como JSON y lo guardo en el local storage
-    storage.setItem(`infoData ID: ${idParaKeys}`, JSON.stringify(acumula));
-    
-    
-    let n = acumula[0];
-    let a= acumula[1];
-    let t = acumula[2];
-    let d = acumula[3];
-    // console.log(acumula);
-    
-    let arr = [n, a, t, d];
-    return arr;
-    
+function editForm(a) {
+
+    // son dos parentElement porque con el primero se obtiene el padre de <a></a> que es un <td></td>, y con el otro el padre de este que es el tr que necesito
+    selectedRow = a.parentElement.parentElement;
+
+    document.getElementById('nombre').value = selectedRow.cells[0].innerHTML;
+    document.getElementById('apellido').value = selectedRow.cells[1].innerHTML;
+    document.getElementById('tarea').value = selectedRow.cells[2].innerHTML;
+    document.getElementById('descripcion').value = selectedRow.cells[3].innerHTML;
 }
 
-// Con esta función se muestran los elementos en la tabla 
-function mostrar(y) {
+function updateRecord(formData) {
 
-    var row = document.getElementById('tbody').insertRow();
-    let editar = document.createElement('button');
-    editar.innerHTML = 'Editar';
-    // editar.setAttribute('id', 'editar');
-    editar.setAttribute('onclick', 'edit(this)');
-    let eliminar = document.createElement('button');
-    eliminar.innerHTML = 'Eliminar';
-    // eliminar.setAttribute('id', 'eliminar');
-    eliminar.setAttribute('onclick', 'del(this)');
-
-    row.insertCell(0).innerHTML = y[0];
-    row.insertCell(1).innerHTML = y[1];
-    row.insertCell(2).innerHTML = y[2];
-    row.insertCell(3).innerHTML = y[3];
-    let a = row.insertCell(4);
-    a.appendChild(eliminar);
-    a.appendChild(editar);   
-
+    selectedRow.cells[0].innerHTML = formData.nombre;
+    selectedRow.cells[1].innerHTML = formData.apellido;
+    selectedRow.cells[2].innerHTML = formData.tarea;
+    selectedRow.cells[3].innerHTML = formData.descripcion;
 }
 
-// Edit
-function edit(col) {
 
-    row = col.parentElement.parentElement;
 
-    document.getElementById('nombre').value = row.cells[0].innerHTML;
-    document.getElementById('apellido').value = row.cells[1].innerHTML;
-    document.getElementById('tarea').value = row.cells[2].innerHTML;
-    document.getElementById('descripcion').value = row.cells[3].innerHTML;
-}
-// Update
-function update() {
-
-    row.cells[0].innerHTML = document.getElementById('nombre').value;
-    row.cells[1].innerHTML = document.getElementById('apellido').value;
-    row.cells[2].innerHTML = document.getElementById('tarea').value;
-    row.cells[3].innerHTML = document.getElementById('descripcion').value;
-
-}
-// Delete
-function del(col) {
-    
-    let pregunta = confirm('Confirme que desea eliminar esta tarea');
-
-    if (pregunta == true) {
-
-        row = col.parentElement.parentElement;
-        document.getElementById('table').deleteRow(row.rowIndex);
-    }
-
-}
