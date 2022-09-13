@@ -52,25 +52,25 @@
                                     <input type="text" name="tarea" id="tarea" required>
                                 </div>
                                 <div>
-                                    <label for="descripcion">Descripción</label>
+                                    <label for="descripcion">Pequeña descripción</label>
                                     <input type="text" name="descripcion" id="descripcion" required>
                                 </div>
                                 <div class="button">
-                                    <button type="submit">Submit</button>
-                                    <button type="reset">Reset</button>
+                                    <button type="submit" class="btn btn-outline-dark">Submit</button>
+                                    <button type="reset" class="btn btn-outline-dark">Reset</button>
                                 </div>
                             </form>
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <table class="mainTable" id="listaTareas">
+                            <table class="table mainTable" id="listaTareas">
                                 <thead>
                                     <th>Nombre</th>
                                     <th>Apellido</th>
                                     <th>Tarea</th>
                                     <th>Descripción</th>
-                                    <!-- La celda de abajo es para posteriormente añadir los botones de eleminar y editar -->
+                                    <!-- La celda de abajo es para posteriormente añadir los botones de eliminar y editar. -->
                                     <th></th>
                                 </thead>
                                 <tbody id="tbody">
@@ -81,7 +81,13 @@
                     </tr>
                 </table>
             </div>
+        </div>
     </main>
+    <footer>
+        <div>
+
+        </div>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
         crossorigin="anonymous"></script>

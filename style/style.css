@@ -48,6 +48,7 @@ header {
 .header__div>nav>a {
     color: #f2e5d7;
     font-weight: 400;
+    font-size: larger;
     text-decoration: none;
 }
 
@@ -103,8 +104,6 @@ header {
 main {
     margin: 15px 0;
     min-width: fit-content;
-    display: flex;
-    flex-direction: column;
     height: 100vh;
 }
 
@@ -114,6 +113,8 @@ main {
     padding: 0;
     box-sizing: border-box;
     display: grid;
+    justify-items: center;
+    align-items: center;
     grid-template-areas:
         "a a a a"
         "b b b b ";
@@ -137,7 +138,7 @@ main {
 
 .crud>.titulo>p {
     text-align: center;
-    font-size: large;
+    font-size: larger;
 }
 
 /* Formulario CRUD */
@@ -148,55 +149,55 @@ main {
 
 .crud>.crudForm>table {
     width: 90%;
-    /* border-spacing: 20px; */
 }
 
-.mainTable {
-    width: 100%;
-    border-collapse: collapse;
+.crud>.crudForm>table form label {
+    font-size: larger;
+    font-weight: 600;
 }
 
-form textarea {
-    resize: none;
-}
-
-td,
-th {
-
-    border: none;
-    padding: 10px;
-    /* border: 6px double #262322; */
-}
-
-td tr:nth-child(even),
-table.mainTable thead>tr {
-    background-color: #262322;
-    color: #f2e5d7;
-}
-
-input[type=text],
-input[type=number] {
+.crud>.crudForm>table form input {
 
     width: 100%;
-    padding: 12px 10px;
+    padding: 12px 0;
     margin-bottom: 10px;
     box-sizing: border-box;
     border: 1px solid #262322;
     border-radius: 15px;
 }
 
-button[type=submit], button[type=reset] {
-    width: 20%;
-    padding: 5px 15px;
-    box-sizing: border-box;
-
-}
-
-.button {
+.crud>.crudForm>table form .button {
     text-align: center;
 }
 
-a {
+.crud>.crudForm>table form .button button[type=submit],
+button[type=reset] {
+    width: 35%;
+    padding: 5px 15px;
+    margin: 0 5px;
+    text-align: center;
+    font-size: large;
+}
+
+.crud>.crudForm>table .mainTable {
+    width: 100%;
+}
+
+.crud>.crudForm>table .mainTable thead tr {
+    background-color: #262322;
+    color: #f2e5d7;
+}
+
+.crud>.crudForm>table .mainTable thead tr th {
+    font-size: 1.1rem;
+}
+
+.crud>.crudForm>table .mainTable tbody>tr:nth-child(even) {
+    background-color: #262322;
+    color: #f2e5d7;
+}
+
+.crud>.crudForm>table .mainTable tbody>tr a {
     margin-left: 15px;
     cursor: pointer;
 }
