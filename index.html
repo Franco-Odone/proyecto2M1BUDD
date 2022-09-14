@@ -35,57 +35,64 @@
             </div>
 
             <div class="container-fluid crudForm">
-                <table class="table">
-                    <tr>
-                        <td>
-                            <form action="">
-                                <div>
-                                    <label for="nombre">Nombre</label>
-                                    <input type="text" name="nombre" id="nombre" required>
-                                </div>
-                                <div>
-                                    <label for="apellido">Apellido</label>
-                                    <input type="text" name="apellido" id="apellido" required>
-                                </div>
-                                <div>
-                                    <label for="tarea">Tarea</label>
-                                    <input type="text" name="tarea" id="tarea" required>
-                                </div>
-                                <div>
-                                    <label for="descripcion">Pequeña descripción</label>
-                                    <input type="text" name="descripcion" id="descripcion" required>
-                                </div>
-                                <div class="button">
-                                    <button type="submit" class="btn btn-outline-dark">Submit</button>
-                                    <button type="reset" class="btn btn-outline-dark">Reset</button>
-                                </div>
-                            </form>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <table class="table mainTable" id="listaTareas">
-                                <thead>
-                                    <th>Nombre</th>
-                                    <th>Apellido</th>
-                                    <th>Tarea</th>
-                                    <th>Descripción</th>
-                                    <!-- La celda de abajo es para posteriormente añadir los botones de eliminar y editar. -->
-                                    <th></th>
-                                </thead>
-                                <tbody id="tbody">
+                <form action="">
+                    <div class="container-fluid">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" name="nombre" id="nombre" required>
+                    </div>
+                    <div class="container-fluid">
+                        <label for="apellido">Apellido</label>
+                        <input type="text" name="apellido" id="apellido" required>
+                    </div>
+                    <div class="container-fluid">
+                        <label for="tarea">Tarea</label>
+                        <input type="text" name="tarea" id="tarea" required>
+                    </div>
+                    <div class="container-fluid">
+                        <label for="descripcion">Pequeña descripción</label>
+                        <input type="text" name="descripcion" id="descripcion" required>
+                    </div>
+                    <div class="button container-fluid">
+                        <button type="submit">Submit</button>
+                        <button type="reset">Reset</button>
+                    </div>
+                </form>
+            </div>
+            <div class="container-fluid crudTable">
+                <table class="mainTable" id="listaTareas">
+                    <thead class="thead">
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Tarea</th>
+                        <th>Descripción</th>
+                        <!-- La celda de abajo es para posteriormente añadir los botones de eliminar y editar. -->
+                        <th>Acción</th>
+                    </thead>
+                    <tbody id="tbody">
 
-                                </tbody>
-                            </table>
-                        </td>
-                    </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
     </main>
-    <footer>
-        <div>
-
+    <footer class="container-fluid">
+        <div class="footer__div container-fluid" id="footer">
+            <div class="footer__div-div container-fluid">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#">Términos y condiciones</a></li>
+                    <li><a href="#">Privacidad</a></li>
+                </ul>
+            </div>
+            <div class="footer__div-div container-fluid">
+                <h4>Síguenos</h4>
+                <div class="redes">
+                    <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="https://twitter.com" target="_blank"><i class="fa-brands fa-twitter"></i></a>
+                    <a href="https://www.instagram.com" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com" target="_blank"><i class="fa-brands fa-tiktok"></i></a>
+                </div>
+            </div>
         </div>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"

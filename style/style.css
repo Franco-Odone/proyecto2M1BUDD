@@ -7,7 +7,7 @@
 /* Header */
 
 header {
-    margin: 5px 0;
+    margin: 10px;
     padding: 10px;
     border: 6px double #262322;
     min-width: fit-content;
@@ -22,11 +22,12 @@ header {
     grid-template-areas:
         "a a a a"
         "b b b b";
+    justify-items: center;
+    align-items: center;
 }
 
 .header__div>a {
     grid-area: a;
-    justify-self: center;
 }
 
 .header__div>a>img {
@@ -35,7 +36,6 @@ header {
 
 .header__div>nav {
     grid-area: b;
-    justify-self: center;
     margin-top: 10px;
     text-align: center;
     background-color: #262322;
@@ -48,7 +48,7 @@ header {
 .header__div>nav>a {
     color: #f2e5d7;
     font-weight: 400;
-    font-size: larger;
+    font-size: large;
     text-decoration: none;
 }
 
@@ -66,8 +66,7 @@ header {
 
     .header__div {
         grid-template-areas:
-            "a b b b"
-            "a b b b";
+            "a b";
     }
 
     .header__div>a>img {
@@ -104,31 +103,33 @@ header {
 main {
     margin: 15px 0;
     min-width: fit-content;
-    height: 100vh;
 }
 
-/* Titulo */
 
 .crud {
     padding: 0;
     box-sizing: border-box;
     display: grid;
+    grid-template-areas:
+    "a a a a"
+    "b b b b"
+    "c c c c";
     justify-items: center;
     align-items: center;
-    grid-template-areas:
-        "a a a a"
-        "b b b b ";
 }
+
+/* Titulo */
 
 .crud>.titulo {
     grid-area: a;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-evenly;
 }
 
 .crud>.titulo>h1 {
-    font-size: 5rem;
+    font-size: 4rem;
     color: #f2e5d7;
     padding: 0 5px;
     border: 6px double #f2e5d7;
@@ -138,66 +139,129 @@ main {
 
 .crud>.titulo>p {
     text-align: center;
-    font-size: larger;
+    font-size: large;
 }
 
 /* Formulario CRUD */
 
 .crud>.crudForm {
     grid-area: b;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
-.crud>.crudForm>table {
-    width: 90%;
+.crud>.crudForm> form div:not(:last-child) {
+    display: flex;
+    flex-direction: column;
 }
 
-.crud>.crudForm>table form label {
-    font-size: larger;
+.crud>.crudForm> form label {
+    font-size: large;
     font-weight: 600;
 }
 
-.crud>.crudForm>table form input {
-
+.crud>.crudForm> form input {
     width: 100%;
-    padding: 12px 0;
-    margin-bottom: 10px;
-    box-sizing: border-box;
+    padding: 10px;
+    margin-bottom: 5px;
     border: 1px solid #262322;
     border-radius: 15px;
 }
 
-.crud>.crudForm>table form .button {
+.crud>.crudForm> form .button {
     text-align: center;
 }
 
-.crud>.crudForm>table form .button button[type=submit],
+.crud>.crudForm> form .button button[type=submit],
 button[type=reset] {
     width: 35%;
-    padding: 5px 15px;
-    margin: 0 5px;
+    padding: 0;
+    margin: 5px 5px;
     text-align: center;
     font-size: large;
 }
 
-.crud>.crudForm>table .mainTable {
+
+
+/* Tabla CRUD */
+
+.crud>.crudTable {
+    grid-area: c;
+}
+
+.crud>.crudTable>.mainTable {
     width: 100%;
+    margin: 15px 0 0 0;
+    padding: 0;
+    overflow: auto;
+    /* border-collapse: collapse; */
 }
 
-.crud>.crudForm>table .mainTable thead tr {
+.crud>.crudTable>.mainTable tr,
+td {
+    border: none;
+    width: fit-content;
+}
+
+.crud>.crudTable>.mainTable>thead>tr {
+    outline: 2px solid #262322;
+    background-color: #262322;
+    color: #f2e5d7;
+    border: none;
+}
+
+.crud>.crudTable>.mainTable thead tr th {
+    font-size: larger;
+    padding: 5px;
+    border: 4px solid #f2e5d7;
+    text-align: center;
+}
+
+.crud>.crudTable>.mainTable tbody>tr:nth-child(even) {
     background-color: #262322;
     color: #f2e5d7;
 }
 
-.crud>.crudForm>table .mainTable thead tr th {
-    font-size: 1.1rem;
-}
-
-.crud>.crudForm>table .mainTable tbody>tr:nth-child(even) {
-    background-color: #262322;
-    color: #f2e5d7;
-}
-
-.crud>.crudForm>table .mainTable tbody>tr a {
-    margin-left: 15px;
+.crud>.crudTable>.mainTable tbody>tr a {
+    margin: 0 10px;
     cursor: pointer;
+}
+
+.crud>.crudTable>.mainTable tbody>tr td {
+    font-size: larger;
+    padding: 5px;
+}
+
+/* Main responsive */
+
+@media screen and (min-width: 768px) {
+
+    .crud {
+        grid-template-areas:
+        "a a b b"
+        "a a b b"
+        "c c c c";
+    }
+    
+    /* Titulo */
+    
+    .crud>.titulo>h1 {
+        font-size: 5rem;
+    }
+    
+    /* Formulario CRUD */
+    
+    .crud>.crudForm> form label {
+        font-size: larger;
+    } 
+}
+
+/* Footer */
+
+footer {
+    min-width: fit-content;
+    border: 6px double #262322;
+    margin: 10px 0 5px 0;
+    padding-bottom: 10px;
 }
