@@ -1,8 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+
 #body {
     background-color: #f2e5d7;
     font-family: 'Roboto Condensed', sans-serif;
     min-width: fit-content;
 }
+
 
 /* Header */
 
@@ -66,7 +71,8 @@ header {
 
     .header__div {
         grid-template-areas:
-            "a b";
+            "a a b b"
+            "a a b b";
     }
 
     .header__div>a>img {
@@ -75,22 +81,21 @@ header {
     }
 
     .header__div>nav {
-        height: fit-content;
         align-self: center;
         margin-bottom: 20px;
-        font-size: 1.2rem;
         border: 6px double #f2e5d7;
         flex-direction: row;
         justify-content: space-around;
     }
 
     .header__div>nav>a {
+        font-size: 1.4rem;
         margin: 5px 0;
-        transition: transform;
+        transition: color 0.5s;
     }
 
     .header__div>nav>a:hover {
-        transform: scale(110%);
+        color: #a62322;
     }
 
     .header__div>nav>a:not(:last-child) {
@@ -111,11 +116,10 @@ main {
     box-sizing: border-box;
     display: grid;
     grid-template-areas:
-    "a a a a"
-    "b b b b"
-    "c c c c";
-    justify-items: center;
-    align-items: center;
+        "a a a a"
+        "b b b b"
+        "c c c c";
+    justify-content: center;
 }
 
 /* Titulo */
@@ -148,20 +152,26 @@ main {
     grid-area: b;
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
+    padding: 0;
 }
 
-.crud>.crudForm> form div:not(:last-child) {
+.crud>.crudForm>form div:not(:last-child) {
     display: flex;
     flex-direction: column;
 }
 
-.crud>.crudForm> form label {
+.crud>.crudForm>form div {
+    padding: 0;
+}
+
+.crud>.crudForm>form label {
     font-size: large;
     font-weight: 600;
 }
 
-.crud>.crudForm> form input {
+.crud>.crudForm>form input {
     width: 100%;
     padding: 10px;
     margin-bottom: 5px;
@@ -169,37 +179,40 @@ main {
     border-radius: 15px;
 }
 
-.crud>.crudForm> form .button {
+.crud>.crudForm>form .button {
     text-align: center;
 }
 
-.crud>.crudForm> form .button button[type=submit],
+.crud>.crudForm>form .button button[type=submit],
 button[type=reset] {
     width: 35%;
     padding: 0;
     margin: 5px 5px;
     text-align: center;
     font-size: large;
+    color: #262322;
+    background-color: #f2e5d7;
+    border: 2px solid #262322;
 }
-
-
 
 /* Tabla CRUD */
 
 .crud>.crudTable {
     grid-area: c;
+    overflow: auto;
 }
 
 .crud>.crudTable>.mainTable {
     width: 100%;
+    table-layout: fixed;
+    min-width: 1000px;
+    border-collapse: collapse;
     margin: 15px 0 0 0;
     padding: 0;
-    overflow: auto;
-    /* border-collapse: collapse; */
 }
 
 .crud>.crudTable>.mainTable tr,
-td {
+.mainTable td {
     border: none;
     width: fit-content;
 }
@@ -239,22 +252,49 @@ td {
 
     .crud {
         grid-template-areas:
-        "a a b b"
-        "a a b b"
-        "c c c c";
+            "a a b b"
+            "a a b b"
+            "c c c c";
+        justify-content: unset;
     }
-    
+
     /* Titulo */
-    
+
+    .crud>.titulo {
+        justify-content: center;
+    }
+
     .crud>.titulo>h1 {
         font-size: 5rem;
     }
-    
+
     /* Formulario CRUD */
-    
-    .crud>.crudForm> form label {
+
+    .crud>.crudForm>form label {
         font-size: larger;
-    } 
+    }
+
+    .crud>.crudForm>form .button button[type=submit],
+    button[type=reset] {
+        transition: all 0.5s;
+    }
+
+    .crud>.crudForm>form .button button[type=submit]:hover,
+    button[type=reset]:hover {
+        color: #a62322;
+        background-color: #262322;
+    }
+
+    /* Tabla CRUD */
+
+    .crud>.crudTable>.mainTable tbody>tr a {
+        transition: all 0.5s;
+        font-size: larger;
+    }
+
+    .crud>.crudTable>.mainTable tbody>tr a:hover {
+        color: #a62322;
+    }
 }
 
 /* Footer */
@@ -264,4 +304,121 @@ footer {
     border: 6px double #262322;
     margin: 10px 0 5px 0;
     padding-bottom: 10px;
+}
+
+footer>.footer__div {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+footer>.footer__div>.footer__div-div {
+    padding: 0 15px;
+    margin: 5px 0 0 0;
+}
+
+footer>.footer__div>.footer__div-div h4 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    color: #262322;
+    text-align: center;
+}
+
+footer>.footer__div>.footer__div-div ul {
+    list-style: none;
+    padding: 0;
+}
+
+footer>.footer__div>.footer__div-div ul li {
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+footer>.footer__div>.footer__div-div ul li a {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #262322;
+    text-decoration: none;
+    display: block;
+    line-height: 25px;
+}
+
+footer>.footer__div>.footer__div-div>.redes {
+    text-align: center;
+}
+
+footer>.footer__div>.footer__div-div>.redes a {
+    display: inline-block;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+    border: 2px solid #262322;
+    border-radius: 50%;
+    color: #262322;
+    background-color: #f2e5d7;
+}
+
+@media screen and (min-width: 768px) {
+
+    footer {
+        padding-bottom: 0;
+        border: none;
+    }
+
+    footer>.footer__div {
+        flex-direction: row;
+        padding: 0 40px 0 30px;
+    }
+
+    footer>.footer__div>.footer__div-div h4 {
+        color: #f2e5d7;
+        font-size: 1.5rem;
+        text-align: left;
+    }
+
+    footer>.footer__div>.footer__div-div ul li {
+        text-align: left;
+    }
+
+    footer>.footer__div>.footer__div-div ul li a {
+        font-size: 1.2rem;
+        transition: color 0.5s;
+        color: #f2e5d7;
+    }
+
+    footer>.footer__div>.footer__div-div ul li a:hover {
+        color: #a62322;
+    }
+
+    footer>.footer__div>.footer__div-div:first-child {
+        align-self: center;
+        border: 6px double #f2e5d7;
+        border-radius: 15px;
+        padding: 10px;
+        background-color: #262322;
+        margin-bottom: 5px;
+        margin-right: 5px;
+    }
+
+    footer>.footer__div>.footer__div-div:last-child {
+        align-self: center;
+        border: 6px double #f2e5d7;
+        border-radius: 15px;
+        background-color: #262322;
+        padding: 26px;
+        margin-bottom: 5px;
+    }
+
+    footer>.footer__div>.footer__div-div>.redes a {
+        color: #262322;
+        background-color: #f2e5d7;
+        transition: all 0.5s;
+    }
+
+    footer>.footer__div>.footer__div-div>.redes a:hover {
+        color: #262322;
+        background-color: #a62322;
+    }
 }

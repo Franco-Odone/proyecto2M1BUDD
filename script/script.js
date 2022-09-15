@@ -86,7 +86,12 @@ function updateRecord(data) {
     selectedRow.cells[2].innerHTML = data.tarea;
     selectedRow.cells[3].innerHTML = data.descripcion;
 
-    tareas.splice((selectedRow.rowIndex - 1), 1, {nombre: data.nombre, apellido: data.apellido, tarea: data.tarea, descripcion: data.descripcion });
+    tareas.splice((selectedRow.rowIndex - 1), 1, {
+        nombre: data.nombre, 
+        apellido: data.apellido, 
+        tarea: data.tarea, 
+        descripcion: data.descripcion 
+    });
     localStorage.setItem('dataTareas', JSON.stringify(tareas));
 }
 
