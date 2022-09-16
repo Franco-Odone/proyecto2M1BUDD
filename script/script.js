@@ -43,7 +43,9 @@ function insertNewRecord(data) {
     newRow.insertCell(3).innerHTML = data.descripcion;
 
     // Se insertan los elementos que van a ser los botones de Edit y Delete, con sus respectivos eventos.
-    newRow.insertCell(4).innerHTML = `<a onClick=editForm(this)>Edit</a><a onClick=deleteRecord(this)>Delete</a>`;
+    newRow.insertCell(4).innerHTML =
+    `<button type="button" onClick=editForm(this)>Edit</button>
+    <button type="button" onClick=deleteRecord(this)>Delete</button>`;
 
     // Para agregar los datos de los inputs (data) al array tareas.
     tareas.push(data)
@@ -52,26 +54,33 @@ function insertNewRecord(data) {
     localStorage.setItem('dataTareas', JSON.stringify(tareas));
 };
 
-function deleteRecord(a) {
+function deleteRecord(button) {
 
-    // Son dos parentElement porque con el primero se obtiene el padre de <a></a> que es un <td></td>, y con el otro el padre de este que es el tr que necesito.
-    let row = a.parentElement.parentElement;
+    // Son dos parentElement porque con el primero se obtiene el padre de <button></button> que es un <td></td>, y con el otro el padre de este que es el tr que necesito.
+    let row = button.parentElement.parentElement;
 
-    let x = confirm('Confirme si desea eliminar esta tarea');
+    Swal.fire({
+        title: 'Confirme si desea eliminar esta tarea',
+        showDenyButton: false,
+        showCancelButton: true,
+        confirmButtonText: 'Eliminar',
+      }).then((result) => {
 
-    if (x === true) {
+        if (result.isConfirmed) {
+            Swal.fire('Tarea eliminada', '', 'success');
 
-        // rowIndex entrega el indice del tr que se quiere eliminar.        
-        tareas.splice((row.rowIndex - 1), 1);
+            // rowIndex entrega el indice del tr que se quiere eliminar.        
+            tareas.splice((row.rowIndex - 1), 1);
 
-        localStorage.setItem('dataTareas', JSON.stringify(tareas));
-        document.getElementById('listaTareas').deleteRow(row.rowIndex);
-    };
+            localStorage.setItem('dataTareas', JSON.stringify(tareas));
+            document.getElementById('listaTareas').deleteRow(row.rowIndex);
+        }
+      });
 };
 
-function editForm(a) {
+function editForm(button) {
 
-    selectedRow = a.parentElement.parentElement;
+    selectedRow = button.parentElement.parentElement;
 
     document.getElementById('nombre').value = selectedRow.cells[0].innerHTML;
     document.getElementById('apellido').value = selectedRow.cells[1].innerHTML;
@@ -106,20 +115,23 @@ function updateAfterPageRefresh() {
 
         for (let index = 0; index < tareas.length; index++) {
 
-            let n = tareas[index].nombre;
-            let a = tareas[index].apellido;
-            let t = tareas[index].tarea;
-            let d = tareas[index].descripcion;
+            let nombre = tareas[index].nombre;
+            let apellido = tareas[index].apellido;
+            let tarea = tareas[index].tarea;
+            let descripcion = tareas[index].descripcion;
 
             document.querySelector('#tbody').innerHTML +=
             `<tr>
-                <td>${n}</td>
-                <td>${a}</td>
-                <td>${t}</td>
-                <td>${d}</td>
-                <td><a onClick=editForm(this)>Edit</a><a onClick=deleteRecord(this)>Delete</a></td>
+                <td>${nombre}</td>
+                <td>${apellido}</td>
+                <td>${tarea}</td>
+                <td>${descripcion}</td>
+                <td>
+                    <button type="button" onClick=editForm(this)>Edit</button>
+                    <button type="button" onClick=deleteRecord(this)>Delete</button>
+                </td>
             </tr>
-            `
+            `;
         };
     };
 }
