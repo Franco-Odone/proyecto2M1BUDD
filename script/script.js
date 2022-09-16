@@ -44,8 +44,8 @@ function insertNewRecord(data) {
 
     // Se insertan los elementos que van a ser los botones de Edit y Delete, con sus respectivos eventos.
     newRow.insertCell(4).innerHTML =
-    `<button type="button" onClick=editForm(this)>Edit</button>
-    <button type="button" onClick=deleteRecord(this)>Delete</button>`;
+    `<button type="button" onClick=editForm(this)>Editar</button>
+    <button type="button" onClick=deleteRecord(this)>Eliminar</button>`;
 
     // Para agregar los datos de los inputs (data) al array tareas.
     tareas.push(data)
@@ -127,8 +127,8 @@ function updateAfterPageRefresh() {
                 <td>${tarea}</td>
                 <td>${descripcion}</td>
                 <td>
-                    <button type="button" onClick=editForm(this)>Edit</button>
-                    <button type="button" onClick=deleteRecord(this)>Delete</button>
+                    <button type="button" onClick=editForm(this)>Editar</button>
+                    <button type="button" onClick=deleteRecord(this)>Eliminar</button>
                 </td>
             </tr>
             `;

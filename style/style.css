@@ -391,7 +391,6 @@ footer>.footer__div>.footer__div-div>.redes a {
     }
 
     footer>.footer__div>.footer__div-div ul li a {
-        font-size: 1.2rem;
         transition: color 0.5s;
         color: #f2e5d7;
     }
@@ -420,13 +419,10 @@ footer>.footer__div>.footer__div-div>.redes a {
     }
 
     footer>.footer__div>.footer__div-div>.redes a {
-        color: #262322;
-        background-color: #f2e5d7;
         transition: all 0.5s;
     }
 
     footer>.footer__div>.footer__div-div>.redes a:hover {
-        color: #262322;
         background-color: #a62322;
     }
 }
